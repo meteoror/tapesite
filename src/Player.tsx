@@ -39,7 +39,7 @@ export const Player: React.FC<PlayerProps> = ({
         />
       ) : (
         <div className="cover mb-4 d-flex align-items-center justify-content-center">
-          <i className="fa-solid fa-music fa-4x"></i>
+          <span style={{ fontSize: '60px' }}>♪</span>
         </div>
       )}
       
@@ -50,15 +50,15 @@ export const Player: React.FC<PlayerProps> = ({
 
       <div className="controls mt-4">
         <button onClick={handleSkipBackward}>
-          <i className="fa-solid fa-backward"></i>
+          ⏮
         </button>
 
         <button onClick={togglePlay}>
-          {isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}
+          {isPlaying ? '⏸' : '▶'}
         </button>
 
         <button onClick={handleSkipForward}>
-          <i className="fa-solid fa-forward"></i>
+          ⏭
         </button>
       </div>
 

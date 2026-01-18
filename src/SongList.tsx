@@ -34,7 +34,7 @@ export const SongList: React.FC<SongListProps> = ({ songs, currentSong, onSelect
           </div>
 
           <div className="play-hover">
-            <i className="fa-solid fa-play"></i>
+            ▶
           </div>
         </div>
       ))}

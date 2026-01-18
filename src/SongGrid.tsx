@@ -47,7 +47,7 @@ export const SongGrid: React.FC<SongGridProps> = ({
               onClick={() => handleDownload(song)}
               title="Download"
             >
-              <i className="fa-solid fa-download"></i>
+              ↓
             </button>
 
             <button
@@ -55,7 +55,7 @@ export const SongGrid: React.FC<SongGridProps> = ({
               onClick={() => handlePlay(song)}
               title="Play"
             >
-              <i className={`fa-solid ${song.id === currentSongId && isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+              {song.id === currentSongId && isPlaying ? '⏸' : '▶'}
             </button>
           </div>
         ))}
