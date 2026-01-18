@@ -72,7 +72,7 @@ export function useAudioPlayer(initialSong: Song) {
   const downloadSong = (song: Song) => {
     const link = document.createElement('a');
     link.href = song.src;
-    link.download = `${song.title || `song-${song.id}`}.ogg`;
+    link.download = `${song.title || `song-${song.id}`}.mp3`;
     link.setAttribute('target', '_blank');
     document.body.appendChild(link);
     link.click();
