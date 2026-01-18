@@ -1,55 +1,42 @@
 // import React from 'react';
 import { songs } from "./songs";
-import { SongList } from "./SongList";
-import { Player } from "./Player";
+import { SongGrid } from "./SongGrid";
 import { useAudioPlayer } from "./useAudioPlayer";
-import { Bar } from "./Bar";
-import { Alert } from "./Alert";
 
 export default function App() {
   const player = useAudioPlayer(songs[0]);
 
+  const handlePlaySong = (song: any) => {
+    // If clicking the same song that's playing, toggle pause
+    if (player.currentSong.id === song.id && player.isPlaying) {
+      player.togglePlay();
+    } else if (player.currentSong.id === song.id && !player.isPlaying) {
+      // If same song but paused, resume
+      player.togglePlay();
+    } else {
+      // Different song: switch and play
+      player.setCurrentSong(song);
+      setTimeout(() => {
+        if (player.audioRef.current) {
+          player.audioRef.current.play().catch(err => console.error('Play error:', err));
+          player.setIsPlaying(true);
+        }
+      }, 100);
+    }
+  };
+
   return (
-    <div className="vh-100 d-flex flex-column p-3">
-      {/* Alert */}
-      <div className="flex-shrink-0">
-        <Alert />
-      </div>
-
-      {/* Main content */}
-      <div className="flex-grow-1 d-flex flex-column flex-md-row overflow-hidden gap-3">
-        {/* Song List */}
-        <div className="flex-md-grow-1 overflow-hidden d-flex flex-column">
-          <div className="overflow-auto flex-grow-1">
-            <SongList
-              songs={songs}
-              currentSong={player.currentSong}
-              onSelect={player.setCurrentSong}
-            />
-          </div>
-        </div>
-
-        {/* Player */}
-        <div className="flex-md-grow-1 overflow-hidden d-flex align-items-center justify-content-center">
-          <Player
-            song={player.currentSong}
-            isPlaying={player.isPlaying}
-            togglePlay={player.togglePlay}
-            skip={player.skip}
-            audioRef={player.audioRef}
-            onTimeUpdate={player.onTimeUpdate}
-            onEnded={() => player.setIsPlaying(false)}
-          />
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="flex-shrink-0 mt-3">
-        <Bar
-          progress={player.progress}
-          onSeek={player.seek}
-        />
-      </div>
+    <div className="app-grid-layout p-3">
+      <SongGrid
+        songs={songs}
+        currentSongId={player.currentSong.id}
+        isPlaying={player.isPlaying}
+        onPlay={handlePlaySong}
+        onDownload={player.downloadSong}
+        audioRef={player.audioRef}
+        onTimeUpdate={player.onTimeUpdate}
+        onEnded={() => player.setIsPlaying(false)}
+      />
     </div>
   );
 }

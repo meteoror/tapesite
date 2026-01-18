@@ -68,6 +68,16 @@ export function useAudioPlayer(initialSong: Song) {
     audioRef.current.currentTime += seconds;
   };
 
+  /** Download song to user's computer */
+  const downloadSong = (song: Song) => {
+    const link = document.createElement('a');
+    link.href = song.src;
+    link.download = `${song.title || song.id}.ogg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return {
     audioRef,
     currentSong,
@@ -79,5 +89,6 @@ export function useAudioPlayer(initialSong: Song) {
     seek,
     skip,
     setIsPlaying,
+    downloadSong,
   };
 }
