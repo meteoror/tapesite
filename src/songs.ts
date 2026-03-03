@@ -8,7 +8,7 @@ export const songs: Song[] = [
   {
     id: 1,
     title: "01",
-    src: "/audio/01_120_c#min.mp3"
+    src: "/audio/01_120_csharpmin.mp3"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const songs: Song[] = [
   {
     id: 4,
     title: "04",
-    src: "/audio/04_138_c#min.mp3"
+    src: "/audio/04_138_csharpmin.mp3"
   },
   {
     id: 5,
@@ -43,6 +43,6 @@ export const songs: Song[] = [
   {
     id: 8,
     title: "08",
-    src: "/audio/08_157_g#min.mp3"
+    src: "/audio/08_157_gsharpmin.mp3"
   }
 ];
